@@ -1,7 +1,7 @@
 import { createServer } from "node:http";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
-
+import { registerVeridexaTools } from "./tools.js";
 const port = Number(process.env.PORT ?? 3000);
 
 const server = createServer(async (req, res) => {
@@ -22,7 +22,7 @@ const server = createServer(async (req, res) => {
       name: "veridexa-mcp-gateway",
       version: "1.0.0",
     });
-
+registerVeridexaTools(mcpServer);
     const transport = new StreamableHTTPServerTransport({
       sessionIdGenerator: undefined,
     });
